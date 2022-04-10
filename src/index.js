@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route, HashRouter } from "react-router-dom";
 import { ChainId, ThirdwebProvider } from "@thirdweb-dev/react";
 import Landing from "./pages/Landing";
 import Create from "./pages/Create";
+import Chat from "./pages/Chat";
 
 // This is the chainId your dApp will work on.
 const activeChainId = ChainId.Rinkeby;
@@ -19,6 +20,7 @@ ReactDOM.render(
           <Route path="/community/:communityname" element={<App />} />
           <Route path="/create" element={<Create />} />
           <Route path="/" element={<Landing />} />
+            <Route path="/chat" element={<Chat/>}/>
         </Routes>
       </BrowserRouter>
     </ThirdwebProvider>

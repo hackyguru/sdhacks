@@ -12,6 +12,7 @@ import { ChainId } from "@thirdweb-dev/sdk";
 import { useParams } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Navbar2 from "./components/Navbar2";
+import Chat from "./components/Chat"
 
 const App = () => {
   let { communityname } = useParams();
@@ -172,6 +173,12 @@ const App = () => {
     }
   };
 
+  const [menu, setMenu] = useState(true);
+
+  function changeMenu(val) {
+    setMenu(val);
+  }
+
   // This is the case where the user hasn't connected their wallet
   // to your web app. Let them call connectWallet.
   if (!address) {
@@ -188,111 +195,113 @@ const App = () => {
   if (hasClaimedNFT) {
     return (
       <div className="flex-column bg-gradient-to-r from-yellow-200 to-yellow-200 min-h-screen">
-        <Navbar2 />
-        <div className="flex mr-10 justify-end space-x-4">
-          <div className="bg-white flex space-x-3 p-2 rounded-xl">
-            <svg
-              class="w-5 h-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M11 11V9a2 2 0 00-2-2m2 4v4a2 2 0 104 0v-1m-4-3H9m2 0h4m6 1a9 9 0 11-18 0 9 9 0 0118 0z"
-              ></path>
-            </svg>
-            <span
-              style={{ fontFamily: "Poppins", lineHeight: "1.5" }}
-              className="mfont-sans text-xs font-bold tracking-tight text-gray-900"
-            >
+        <Navbar2 changeMenu={changeMenu} />
+        {menu &&
+        <div>
+          <div className="flex mr-10 justify-end space-x-4">
+            <div className="bg-white flex space-x-3 p-2 rounded-xl">
+              <svg
+                  class="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M11 11V9a2 2 0 00-2-2m2 4v4a2 2 0 104 0v-1m-4-3H9m2 0h4m6 1a9 9 0 11-18 0 9 9 0 0118 0z"
+                ></path>
+              </svg>
+              <span
+                  style={{fontFamily: "Poppins", lineHeight: "1.5"}}
+                  className="mfont-sans text-xs font-bold tracking-tight text-gray-900"
+              >
               {address.tokenAmount}Community coin : 10
             </span>
-          </div>
-          <div className="bg-white flex space-x-3 p-2 rounded-xl">
-            <svg
-              class="w-4 h-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-              ></path>
-            </svg>
-            <span
-              style={{ fontFamily: "Poppins", lineHeight: "1.5" }}
-              className="mfont-sans text-xs font-bold tracking-tight text-gray-900"
-            >
+            </div>
+            <div className="bg-white flex space-x-3 p-2 rounded-xl">
+              <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                ></path>
+              </svg>
+              <span
+                  style={{fontFamily: "Poppins", lineHeight: "1.5"}}
+                  className="mfont-sans text-xs font-bold tracking-tight text-gray-900"
+              >
               {address}
             </span>
-            <svg
-              class="w-4 h-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
-              ></path>
-            </svg>
+              <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                ></path>
+              </svg>
+            </div>
           </div>
-        </div>
-        <div className="ml-10 flex justify-between mr-10 mt-2">
-          <h1
-            className="max-w-xl mb-6 font-sans text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl sm:leading-none"
-            style={{ fontFamily: "Poppins", lineHeight: "1.5" }}
-          >
-            Welcome to {communityname}
-          </h1>
-          <a
-            href="/invite"
-            className="bg-yellow-400  flex space-x-3 p-2 rounded-xl h-9"
-          >
-            <svg
-              class="w-4 h-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
+          <div className="ml-10 flex justify-between mr-10 mt-2">
+            <h1
+                className="max-w-xl mb-6 font-sans text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl sm:leading-none"
+                style={{fontFamily: "Poppins", lineHeight: "1.5"}}
             >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"
-              ></path>
-            </svg>
-            <span
-              style={{ fontFamily: "Poppins", lineHeight: "1.5" }}
-              className="mfont-sans text-xs font-bold tracking-tight text-gray-900"
+              Welcome to {communityname}
+            </h1>
+            <a
+                href="/invite"
+                className="bg-yellow-400  flex space-x-3 p-2 rounded-xl h-9"
             >
+              <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"
+                ></path>
+              </svg>
+              <span
+                  style={{fontFamily: "Poppins", lineHeight: "1.5"}}
+                  className="mfont-sans text-xs font-bold tracking-tight text-gray-900"
+              >
               Invite new member
             </span>
-          </a>
-        </div>
-        <div className="flex">
-          <div className="ml-10 w-1/2">
-            <h1
-              style={{ fontFamily: "Poppins", lineHeight: "1.5" }}
-              className="mfont-sans mb-4 text-lg font-bold tracking-tight text-gray-900"
-            >
-              Member information
-            </h1>
-            <div class="overflow-hidden overflow-x-auto border border-black rounded">
-              <table class="min-w-full text-sm divide-y divide-black">
-                <thead>
+            </a>
+          </div>
+          <div className="flex">
+            <div className="ml-10 w-1/2">
+              <h1
+                  style={{fontFamily: "Poppins", lineHeight: "1.5"}}
+                  className="mfont-sans mb-4 text-lg font-bold tracking-tight text-gray-900"
+              >
+                Member information
+              </h1>
+              <div class="overflow-hidden overflow-x-auto border border-black rounded">
+                <table class="min-w-full text-sm divide-y divide-black">
+                  <thead>
                   <tr class="bg-black">
                     <th class="px-4 py-2 font-medium text-left text-white whitespace-nowrap">
                       Member address
@@ -307,180 +316,182 @@ const App = () => {
                       Referals
                     </th>
                   </tr>
-                </thead>
+                  </thead>
 
-                <tbody class="divide-y divide-black">
+                  <tbody class="divide-y divide-black">
                   {memberList.map((member) => {
                     return (
-                      <tr key={member.address}>
-                        <td class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap">
-                          {shortenAddress(member.address)}
-                        </td>
-                        <td class="px-4 py-2 text-gray-700 whitespace-nowrap">
-                          {member.tokenAmount}
-                        </td>
-                        <td class="px-4 py-2 text-gray-700 whitespace-nowrap">
-                          10-04-2022
-                        </td>
-                        <td class="px-4 py-2 text-gray-700 whitespace-nowrap">
-                          -
-                        </td>
-                      </tr>
+                        <tr key={member.address}>
+                          <td class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap">
+                            {shortenAddress(member.address)}
+                          </td>
+                          <td class="px-4 py-2 text-gray-700 whitespace-nowrap">
+                            {member.tokenAmount}
+                          </td>
+                          <td class="px-4 py-2 text-gray-700 whitespace-nowrap">
+                            10-04-2022
+                          </td>
+                          <td class="px-4 py-2 text-gray-700 whitespace-nowrap">
+                            -
+                          </td>
+                        </tr>
                     );
                   })}
-                </tbody>
-              </table>
-            </div>
-            <h1
-              style={{ fontFamily: "Poppins", lineHeight: "1.5" }}
-              className="mt-10 font-sans mb-4 text-lg font-bold tracking-tight text-gray-900"
-            >
-              Community announcements
-            </h1>
-            <div className="mt-7 flex">
-              <input
-                class="w-full p-3 text-sm border-gray-200 rounded-lg"
-                placeholder="Create an announcement"
-              />
-              <button
-                style={{ fontFamily: "Poppins", lineHeight: "1.5" }}
-                className="font-sans font-bold text-md ml-4 tracking-tight rounded-xl p-3 text-white bg-black"
-                type="submit"
-              >
-                Announce
-              </button>
-            </div>
-          </div>
-          <div>
-            <div className="ml-10 mr-10">
+                  </tbody>
+                </table>
+              </div>
               <h1
-                style={{ fontFamily: "Poppins", lineHeight: "1.5" }}
-                className="mfont-sans mb-4 text-lg font-bold tracking-tight text-gray-900"
+                  style={{fontFamily: "Poppins", lineHeight: "1.5"}}
+                  className="mt-10 font-sans mb-4 text-lg font-bold tracking-tight text-gray-900"
               >
-                Community Polls
-              </h1>{" "}
-              <form
-                onSubmit={async (e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-
-                  setIsVoting(true);
-
-                  const votes = proposals.map((proposal) => {
-                    const voteResult = {
-                      proposalId: proposal.proposalId,
-                      vote: 2,
-                    };
-                    proposal.votes.forEach((vote) => {
-                      const elem = document.getElementById(
-                        proposal.proposalId + "-" + vote.type
-                      );
-
-                      if (elem.checked) {
-                        voteResult.vote = vote.type;
-                        return;
-                      }
-                    });
-                    return voteResult;
-                  });
-
-                  try {
-                    const delegation = await token.getDelegationOf(address);
-                    if (delegation === AddressZero) {
-                      await token.delegateTo(address);
-                    }
-                    try {
-                      await Promise.all(
-                        votes.map(async ({ proposalId, vote: _vote }) => {
-                          const proposal = await vote.get(proposalId);
-                          if (proposal.state === 1) {
-                            return vote.vote(proposalId, _vote);
-                          }
-                          return;
-                        })
-                      );
-                      try {
-                        await Promise.all(
-                          votes.map(async ({ proposalId }) => {
-                            const proposal = await vote.get(proposalId);
-
-                            if (proposal.state === 4) {
-                              return vote.execute(proposalId);
-                            }
-                          })
-                        );
-                        setHasVoted(true);
-                        console.log("successfully voted");
-                      } catch (err) {
-                        console.error("failed to execute votes", err);
-                      }
-                    } catch (err) {
-                      console.error("failed to vote", err);
-                    }
-                  } catch (err) {
-                    console.error("failed to delegate tokens");
-                  } finally {
-                    setIsVoting(false);
-                  }
-                }}
-              >
-                {proposals.map((proposal) => (
-                  <div
-                    key={proposal.proposalId}
-                    className="border-black border p-3 mb-3 rounded-xl"
-                  >
-                    <h5
-                      style={{ fontFamily: "Poppins", lineHeight: "1.5" }}
-                      className="mfont-sans mb-4 text-sm font-bold tracking-tight text-gray-900"
-                    >
-                      {proposal.description}
-                    </h5>
-                    <div>
-                      {proposal.votes.map(({ type, label }) => (
-                        <div key={type}>
-                          <input
-                            type="radio"
-                            id={proposal.proposalId + "-" + type}
-                            name={proposal.proposalId}
-                            value={type}
-                            defaultChecked={type === 2}
-                          />
-                          <label
-                            style={{ fontFamily: "Poppins", lineHeight: "1.5" }}
-                            className="mfont-sans mb-4 text-xs ml-4 tracking-tight text-gray-900"
-                            htmlFor={proposal.proposalId + "-" + type}
-                          >
-                            {label}
-                          </label>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-                <div className="flex justify-end">
-                  {!hasVoted && (
-                    <small className="ml-10 mt-4">
-                      This will trigger multiple transactions that you will need
-                      to sign.
-                    </small>
-                  )}
-                  <button
-                    style={{ fontFamily: "Poppins", lineHeight: "1.5" }}
-                    className="font-sans mb-4 font-bold text-md ml-4 tracking-tight rounded-xl p-3 text-white bg-black"
-                    disabled={isVoting || hasVoted}
+                Community announcements
+              </h1>
+              <div className="mt-7 flex">
+                <input
+                    class="w-full p-3 text-sm border-gray-200 rounded-lg"
+                    placeholder="Create an announcement"
+                />
+                <button
+                    style={{fontFamily: "Poppins", lineHeight: "1.5"}}
+                    className="font-sans font-bold text-md ml-4 tracking-tight rounded-xl p-3 text-white bg-black"
                     type="submit"
-                  >
-                    {isVoting
-                      ? "Voting..."
-                      : hasVoted
-                      ? "You Already Voted"
-                      : "Submit Votes"}
-                  </button>
-                </div>
-              </form>
+                >
+                  Announce
+                </button>
+              </div>
+            </div>
+            <div>
+              <div className="ml-10 mr-10">
+                <h1
+                    style={{fontFamily: "Poppins", lineHeight: "1.5"}}
+                    className="mfont-sans mb-4 text-lg font-bold tracking-tight text-gray-900"
+                >
+                  Community Polls
+                </h1>{" "}
+                <form
+                    onSubmit={async (e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+
+                      setIsVoting(true);
+
+                      const votes = proposals.map((proposal) => {
+                        const voteResult = {
+                          proposalId: proposal.proposalId,
+                          vote: 2,
+                        };
+                        proposal.votes.forEach((vote) => {
+                          const elem = document.getElementById(
+                              proposal.proposalId + "-" + vote.type
+                          );
+
+                          if (elem.checked) {
+                            voteResult.vote = vote.type;
+                            return;
+                          }
+                        });
+                        return voteResult;
+                      });
+
+                      try {
+                        const delegation = await token.getDelegationOf(address);
+                        if (delegation === AddressZero) {
+                          await token.delegateTo(address);
+                        }
+                        try {
+                          await Promise.all(
+                              votes.map(async ({proposalId, vote: _vote}) => {
+                                const proposal = await vote.get(proposalId);
+                                if (proposal.state === 1) {
+                                  return vote.vote(proposalId, _vote);
+                                }
+                                return;
+                              })
+                          );
+                          try {
+                            await Promise.all(
+                                votes.map(async ({proposalId}) => {
+                                  const proposal = await vote.get(proposalId);
+
+                                  if (proposal.state === 4) {
+                                    return vote.execute(proposalId);
+                                  }
+                                })
+                            );
+                            setHasVoted(true);
+                            console.log("successfully voted");
+                          } catch (err) {
+                            console.error("failed to execute votes", err);
+                          }
+                        } catch (err) {
+                          console.error("failed to vote", err);
+                        }
+                      } catch (err) {
+                        console.error("failed to delegate tokens");
+                      } finally {
+                        setIsVoting(false);
+                      }
+                    }}
+                >
+                  {proposals.map((proposal) => (
+                      <div
+                          key={proposal.proposalId}
+                          className="border-black border p-3 mb-3 rounded-xl"
+                      >
+                        <h5
+                            style={{fontFamily: "Poppins", lineHeight: "1.5"}}
+                            className="mfont-sans mb-4 text-sm font-bold tracking-tight text-gray-900"
+                        >
+                          {proposal.description}
+                        </h5>
+                        <div>
+                          {proposal.votes.map(({type, label}) => (
+                              <div key={type}>
+                                <input
+                                    type="radio"
+                                    id={proposal.proposalId + "-" + type}
+                                    name={proposal.proposalId}
+                                    value={type}
+                                    defaultChecked={type === 2}
+                                />
+                                <label
+                                    style={{fontFamily: "Poppins", lineHeight: "1.5"}}
+                                    className="mfont-sans mb-4 text-xs ml-4 tracking-tight text-gray-900"
+                                    htmlFor={proposal.proposalId + "-" + type}
+                                >
+                                  {label}
+                                </label>
+                              </div>
+                          ))}
+                        </div>
+                      </div>
+                  ))}
+                  <div className="flex justify-end">
+                    {!hasVoted && (
+                        <small className="ml-10 mt-4">
+                          This will trigger multiple transactions that you will need
+                          to sign.
+                        </small>
+                    )}
+                    <button
+                        style={{fontFamily: "Poppins", lineHeight: "1.5"}}
+                        className="font-sans mb-4 font-bold text-md ml-4 tracking-tight rounded-xl p-3 text-white bg-black"
+                        disabled={isVoting || hasVoted}
+                        type="submit"
+                    >
+                      {isVoting
+                          ? "Voting..."
+                          : hasVoted
+                              ? "You Already Voted"
+                              : "Submit Votes"}
+                    </button>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
-        </div>
+        </div>}
+        {!menu && <Chat name={address}/>}
       </div>
     );
   }

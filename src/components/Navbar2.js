@@ -16,7 +16,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Navbar2() {
+export default function Navbar2(props) {
   return (
     <Disclosure as="nav">
       {({ open }) => (
@@ -41,8 +41,8 @@ export default function Navbar2() {
                   alt="Logo"
                 />
                 <div className="flex space-x-32 ml-60 justify-center">
-                  <button>Dashboard</button>
-                  <button>Chat</button>
+                  <button onClick={() => props.changeMenu(true)}>Dashboard</button>
+                  <button onClick={() => props.changeMenu(false)}>Chat</button>
                   <button>Profile</button>
                 </div>
               </div>
