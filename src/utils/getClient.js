@@ -6,9 +6,10 @@ import { Client, PrivateKey, ThreadID } from "@textile/hub";
  */
 export default async function getClient() {
   const key = {
-    key: process.env.REACT_APP_TEXTILE_API_KEY,
-    secret: process.env.REACT_APP_TEXTILE_API_SECRET,
+    key: "bjqawcvwopcptmzqmyrvperajbi",
+    secret: "bn4u3xofbwll2yy3lsljea3peapr4dkl6zol2yzy",
   };
+  // USING DUMMY KEYS
 
   let identity = PrivateKey.fromString(
     "bbaareqfbtofe27x24ra5z4ul4r62ylfopnkx7mgpjwh57oduhk2yhrk5j6fghqunzwlaiehtkj3rfwgy3sgfob5s6xes5fq7blhuqeedg6kwg"
